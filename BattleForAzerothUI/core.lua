@@ -323,10 +323,10 @@ local function Initial_ActionBarPositioning()
 		MultiBarBottomLeftButton1:SetPoint("BOTTOMLEFT", MultiBarBottomLeft, 0, -6)
 
 		-- reposition bottom right actionbar
-		MultiBarBottomRight:SetPoint("LEFT", MultiBarBottomLeft, "RIGHT", 43, -6)
+		MultiBarBottomRight:SetPoint("LEFT", MultiBarBottomLeft, 0, 35)
 
 		-- reposition second half of top right bar, underneath
-		MultiBarBottomRightButton7:SetPoint("LEFT", MultiBarBottomRight, 0, -48)
+		-- MultiBarBottomRightButton7:SetPoint("LEFT", MultiBarBottomRight, 0, -48)
 
 		-- reposition right bottom
 		-- MultiBarLeftButton1:SetPoint("TOPRIGHT", MultiBarLeft, 41, 11)
@@ -337,7 +337,8 @@ local function Initial_ActionBarPositioning()
 		-- reposition pet actionbuttons
 		SlidingActionBarTexture0:SetPoint("TOPLEFT", PetActionBarFrame, 1, -5) -- pet bar texture (displayed when bottom left bar is hidden)
 		PetActionButton1:ClearAllPoints()
-		PetActionButton1:SetPoint("TOP", PetActionBarFrame, "LEFT", 51, 4)
+		-- PetActionButton1:SetPoint("TOP", PetActionBarFrame, "LEFT", 51, 4)
+		PetActionButton1:SetPoint("TOPLEFT", PetActionBarFrame, 51, 24)
 
 		-- stance buttons
 		StanceBarLeft:SetPoint("BOTTOMLEFT", StanceBarFrame, 0, -5) -- stance bar texture for when Bottom Left Bar is hidden
@@ -350,14 +351,14 @@ f:RegisterEvent("PLAYER_LOGIN")
 f:SetScript("OnEvent", Initial_ActionBarPositioning)
 
 local function ActivateLongBar()
-	ActionBarArt:Show()
-	ActionBarArtSmall:Hide()
+	ActionBarArt:Hide()
+	ActionBarArtSmall:Show()
 
 	if not BFAUI_SavedVars.Options.HideGryphons or (MainMenuBarLeftEndCap:IsShown() or MainMenuBarRightEndCap:IsShown()) then
 		MainMenuBarLeftEndCap:ClearAllPoints()
 		MainMenuBarLeftEndCap:SetPoint("LEFT", ActionBarArt, "LEFT", 12, 0)
 		MainMenuBarRightEndCap:ClearAllPoints()
-		MainMenuBarRightEndCap:SetPoint("RIGHT", ActionBarArt, "RIGHT", -12, 0)
+		MainMenuBarRightEndCap:SetPoint("RIGHT", ActionBarArt, "RIGHT", -264, 0)
 	else
 		MainMenuBarLeftEndCap:Hide()
 		MainMenuBarRightEndCap:Hide()
@@ -367,27 +368,67 @@ local function ActivateLongBar()
 		-- arrows and page number
 		ActionBarUpButton:SetPoint("CENTER", MainMenuBarArtFrame, "TOPLEFT", 521, -23)
 		ActionBarDownButton:SetPoint("CENTER", MainMenuBarArtFrame, "TOPLEFT", 521, -42)
-		MainMenuBarPageNumber:SetPoint("CENTER", MainMenuBarArtFrame, 28, -5)
+		MainMenuBarPageNumber:SetPoint("CENTER", MainMenuBarArtFrame, 29, -5)
 
 		-- exp bar sizing and positioning
-		MainMenuExpBar:SetSize(798, 10)
+		MainMenuExpBar:SetSize(542, 10)
 		MainMenuExpBar:ClearAllPoints()
 		MainMenuExpBar:SetPoint("BOTTOM", UIParent, 0, 0)
 
 		-- reposition ALL actionbars (right bars not affected)
-		MainMenuBar:SetPoint("BOTTOM", UIParent, 110, 11)
+		MainMenuBar:SetPoint("BOTTOM", UIParent, 237, 11)
 
 		-- xp bar background (the one I made)
-		XPBarBackground:SetSize(798, 10)
-		XPBarBackground:SetPoint("BOTTOM", MainMenuBar, -111, -10)
+		XPBarBackground:SetSize(542, 10)
+		XPBarBackground:SetPoint("BOTTOM", MainMenuBar, -237, -10)
 
-		--[[[
+		--[[
 		if ExhaustionTick:IsShown() then
 			ExhaustionTick_OnEvent(ExhaustionTick, "UPDATE_EXHAUSTION") -- Blizzard function, updates exhaustion tick position on XP bar resize
 		end
 		--]]
 	end
 end
+
+-- local function ActivateLongBar()
+-- 	ActionBarArt:Show()
+-- 	ActionBarArtSmall:Hide()
+
+-- 	if not BFAUI_SavedVars.Options.HideGryphons or (MainMenuBarLeftEndCap:IsShown() or MainMenuBarRightEndCap:IsShown()) then
+-- 		MainMenuBarLeftEndCap:ClearAllPoints()
+-- 		MainMenuBarLeftEndCap:SetPoint("LEFT", ActionBarArt, "LEFT", 12, 0)
+-- 		MainMenuBarRightEndCap:ClearAllPoints()
+-- 		MainMenuBarRightEndCap:SetPoint("RIGHT", ActionBarArt, "RIGHT", -12, 0)
+-- 	else
+-- 		MainMenuBarLeftEndCap:Hide()
+-- 		MainMenuBarRightEndCap:Hide()
+-- 	end
+
+-- 	if not InCombatLockdown() then
+-- 		-- arrows and page number
+-- 		ActionBarUpButton:SetPoint("CENTER", MainMenuBarArtFrame, "TOPLEFT", 521, -23)
+-- 		ActionBarDownButton:SetPoint("CENTER", MainMenuBarArtFrame, "TOPLEFT", 521, -42)
+-- 		MainMenuBarPageNumber:SetPoint("CENTER", MainMenuBarArtFrame, 28, -5)
+
+-- 		-- exp bar sizing and positioning
+-- 		MainMenuExpBar:SetSize(798, 10)
+-- 		MainMenuExpBar:ClearAllPoints()
+-- 		MainMenuExpBar:SetPoint("BOTTOM", UIParent, 0, 0)
+
+-- 		-- reposition ALL actionbars (right bars not affected)
+-- 		MainMenuBar:SetPoint("BOTTOM", UIParent, 110, 11)
+
+-- 		-- xp bar background (the one I made)
+-- 		XPBarBackground:SetSize(798, 10)
+-- 		XPBarBackground:SetPoint("BOTTOM", MainMenuBar, -111, -10)
+
+-- 		--[[[
+-- 		if ExhaustionTick:IsShown() then
+-- 			ExhaustionTick_OnEvent(ExhaustionTick, "UPDATE_EXHAUSTION") -- Blizzard function, updates exhaustion tick position on XP bar resize
+-- 		end
+-- 		--]]
+-- 	end
+-- end
 
 local function ActivateShortBar()
 	ActionBarArt:Hide()
