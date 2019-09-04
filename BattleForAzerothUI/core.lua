@@ -341,8 +341,9 @@ local function Initial_ActionBarPositioning()
 		PetActionButton1:SetPoint("TOPLEFT", PetActionBarFrame, 51, 24)
 
 		-- stance buttons
-		StanceBarLeft:SetPoint("BOTTOMLEFT", StanceBarFrame, 0, -5) -- stance bar texture for when Bottom Left Bar is hidden
+		-- StanceBarLeft:SetPoint("BOTTOMLEFT", StanceBarFrame, 0, -5) -- stance bar texture for when Bottom Left Bar is hidden
 		StanceButton1:ClearAllPoints()
+		StanceButton1:SetPoint("TOPLEFT", StanceBarFrame, 0, 40) -- stance bar texture for when Bottom Left Bar is hidden
 	end
 end
 
